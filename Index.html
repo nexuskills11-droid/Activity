@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Triumph of Surgery - Comic Strip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Print & A4 Page Setup */
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Comic Neue', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .a4-page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+
+        /* Comic Elements */
+        .panel {
+            border: 4px solid #1f2937;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Speech Bubble */
+        .speech {
+            position: relative;
+            background: #ffffff;
+            border: 3px solid #000;
+            border-radius: 16px;
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            max-width: 80%;
+            z-index: 10;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+        
+        .speech-arrow-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #000 transparent transparent transparent;
+            display: block;
+            width: 0;
+        }
+        .speech-arrow-bottom::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 22px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+            display: block;
+            width: 0;
+            z-index: 1;
+        }
+
+        /* Thought Bubble */
+        .thought {
+            position: relative;
+            background: #ffffff;
+            border: 3px solid #000;
+            border-radius: 50%;
+            padding: 12px 16px;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 13px;
+            display: inline-block;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+        .thought::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 20px;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 50%;
+        }
+        .thought::after {
+            content: '';
+            position: absolute;
+            bottom: -22px;
+            left: 14px;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 50%;
+        }
+
+        /* Character Styles */
+        .emoji-char {
+            font-size: 80px;
+            line-height: 1;
+        }
+        
+        /* Sick/Fat Tricki - Dull and Bloated */
+        .tricki-sick {
+            transform: scaleX(1.8) scaleY(1.3);
+            filter: grayscale(80%) sepia(40%) brightness(80%);
+            display: inline-block;
+        }
+
+        /* Healthy Tricki - Bright and Normal */
+        .tricki-healthy {
+            transform: scale(1.1);
+            display: inline-block;
+        }
+
+        .narration {
+            background-color: #fef08a;
+            border-bottom: 3px solid #1f2937;
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER PAGE -->
+    <div class="a4-page p-12 border-[12px] border-double border-gray-800 flex flex-col relative bg-white">
+        
+        <div class="text-center mt-12 mb-16">
+            <h1 class="text-6xl font-black mb-6 uppercase tracking-widest text-gray-900 border-b-4 border-gray-900 pb-4 inline-block">English Project</h1>
+            <h2 class="text-4xl font-bold text-gray-700 mt-4">Comic Strip Adaptation</h2>
+            <h3 class="text-3xl font-bold italic text-indigo-700 mt-6 bg-indigo-50 inline-block px-6 py-2 rounded-xl border-2 border-indigo-200">"A Triumph of Surgery"</h3>
+        </div>
+
+        <!-- Student Details -->
+        <div class="flex-grow flex flex-col justify-center max-w-2xl mx-auto w-full px-10">
+            <div class="space-y-10 text-2xl font-bold text-gray-800">
+                <div class="flex items-end">
+                    <span class="w-40">Name:</span>
+                    <div class="flex-grow border-b-2 border-gray-500 h-8"></div>
+                </div>
+                <div class="flex items-end">
+                    <span class="w-40">Class:</span>
+                    <div class="flex-grow border-b-2 border-gray-500 h-8"></div>
+                </div>
+                <div class="flex items-end">
+                    <span class="w-40">Division:</span>
+                    <div class="flex-grow border-b-2 border-gray-500 h-8"></div>
+                </div>
+                <div class="flex items-end">
+                    <span class="w-40">Roll No.:</span>
+                    <div class="flex-grow border-b-2 border-gray-500 h-8"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teacher's Section -->
+        <div class="mt-auto pt-12 border-t-4 border-gray-800 flex justify-between px-8 text-xl font-bold text-gray-800">
+            <div class="flex flex-col items-center w-64">
+                <div class="h-24 w-full border-b-2 border-dashed border-gray-500 mb-2"></div>
+                <p>Teacher's Signature</p>
+            </div>
+            <div class="flex flex-col items-center w-64">
+                <div class="h-24 w-full border-b-2 border-dashed border-gray-500 mb-2"></div>
+                <p>Marks / Grade</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: COMIC STRIP PART 1 -->
+    <div class="a4-page p-6 flex flex-col">
+        <h2 class="text-center text-3xl font-black mb-4 uppercase">A Triumph of Surgery - Part 1</h2>
+        
+        <div class="grid grid-cols-2 grid-rows-2 gap-4 flex-grow">
+            
+            <!-- Panel 1: Mrs Pumphrey's House (Bright Colors, Fat Tricki) -->
+            <div class="panel bg-pink-200 col-span-2 row-span-1">
+                <div class="narration">Scene 1: Mrs. Pumphrey's Luxurious House</div>
+                <!-- Background decoration -->
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle,_#fbbf24_10%,_transparent_10%)] bg-[size:20px_20px]"></div>
+                
+                <div class="relative h-full w-full p-4 flex items-end justify-between">
+                    <div class="mb-20 ml-4 flex flex-col items-start">
+                        <div class="speech speech-arrow-bottom mb-4 border-pink-600 bg-pink-50">
+                            Oh, my sweet Tricki! You look so weak.<br>Have some more cream cakes and chocolates!
+                        </div>
+                        <div class="emoji-char text-8xl">👩🏼‍🦱<span class="text-5xl">🧁🍰</span></div>
+                    </div>
+
+                    <div class="mb-4 mr-10 flex flex-col items-center">
+                        <div class="thought mb-6 -ml-16 bg-gray-100 text-gray-600 border-gray-600">
+                            Urp... I can't move...<br>but I can't refuse food...
+                        </div>
+                        <!-- Fat, dull Tricki -->
+                        <div class="emoji-char tricki-sick">🐕</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: The Vet Encounter -->
+            <div class="panel bg-stone-200">
+                <div class="narration">Scene 2: The Street</div>
+                <div class="relative h-full w-full p-2 flex flex-col justify-end">
+                    <div class="flex justify-between w-full relative">
+                        <div class="speech speech-arrow-bottom absolute -top-16 left-2 text-xs w-40 border-blue-800">
+                            He is hugely fat! You must cut down his sweet things and give him exercise immediately!
+                        </div>
+                        <div class="emoji-char text-7xl mt-8">👨🏻‍⚕️<span class="text-sm font-bold block">Mr. Herriot</span></div>
+                        
+                        <div class="emoji-char tricki-sick text-5xl mb-4 self-end">🐕</div>
+                        <div class="emoji-char text-7xl mt-8">👩🏼‍🦱</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 3: Taking him away -->
+            <div class="panel bg-slate-300">
+                <div class="narration">Scene 3: The Departure</div>
+                <div class="relative h-full w-full p-2 flex flex-col">
+                    <div class="speech speech-arrow-bottom self-start text-xs border-red-800 mb-2">
+                        I must take him to the surgery. It's the only way to save him!
+                    </div>
+                    
+                    <div class="flex justify-between items-end h-full">
+                        <div class="text-7xl">🚗👨🏻‍⚕️🐕</div>
+                        <div class="flex flex-col items-end">
+                            <div class="speech speech-arrow-bottom text-xs mb-2 bg-blue-50 border-blue-400">
+                                *Sobs* Oh no! He will pine and die without me! 😭
+                            </div>
+                            <div class="emoji-char text-7xl">👩🏼‍🦱</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PAGE 3: COMIC STRIP PART 2 -->
+    <div class="a4-page p-6 flex flex-col">
+        <h2 class="text-center text-3xl font-black mb-4 uppercase">A Triumph of Surgery - Part 2</h2>
+        
+        <div class="grid grid-cols-2 grid-rows-3 gap-4 flex-grow">
+            
+            <!-- Panel 4: At the surgery (Dull, sad) -->
+            <div class="panel bg-gray-400 col-span-2 shadow-inner border-gray-700">
+                <div class="narration bg-gray-300 border-gray-700">Scene 4: The Surgery (First Two Days)</div>
+                <div class="relative h-full w-full p-4 flex items-center justify-center">
+                    
+                    <div class="flex items-center gap-10">
+                        <div class="flex flex-col items-center">
+                            <div class="speech speech-arrow-bottom text-xs mb-2 border-gray-800 bg-gray-200">
+                                Sniff... He's an uninteresting object. Let's ignore him.
+                            </div>
+                            <div class="emoji-char text-6xl">🐩🦮</div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <div class="thought mb-4 border-gray-600 bg-gray-100 text-gray-500">
+                                No energy...<br>Plenty of water... no food...
+                            </div>
+                            <!-- Extremely dull Tricki laying flat -->
+                            <div class="emoji-char tricki-sick opacity-60 mt-4">🐕</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 5: Recovery (Getting brighter) -->
+            <div class="panel bg-green-200 col-span-2">
+                <div class="narration bg-green-400">Scene 5: Days Later - The Pack</div>
+                <div class="relative h-full w-full p-4 flex items-center justify-around">
+                    
+                    <div class="emoji-char text-7xl animate-bounce">🎾🐕‍🦺</div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="thought mb-2 bg-white border-green-600 text-green-800">
+                            Wow! I feel light!<br>I actually want to run and fight for my food!
+                        </div>
+                        <!-- Tricki getting healthier! Normal size, brighter -->
+                        <div class="emoji-char tricki-healthy text-7xl">🐕🏃‍♂️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 6: The Triumph (Brightest, Happy) -->
+            <div class="panel bg-yellow-200 col-span-2 border-yellow-600 border-4">
+                <div class="narration bg-yellow-400 border-yellow-700">Scene 6: Two Weeks Later - The Climax</div>
+                <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle,_#ffffff_10%,_transparent_10%)] bg-[size:20px_20px]"></div>
+                
+                <div class="relative h-full w-full p-4 flex items-end justify-between">
+                    <div class="flex flex-col items-center mb-2">
+                        <div class="speech speech-arrow-bottom text-sm mb-4 border-black bg-white">
+                            He was just a very sick dog who needed a normal diet, ma'am.
+                        </div>
+                        <div class="emoji-char text-7xl">👨🏻‍⚕️</div>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="speech speech-arrow-bottom text-sm mb-4 border-pink-500 bg-pink-50 text-center">
+                            Oh, Mr. Herriot! He is completely transformed!<br>How can I ever thank you?<br><span class="text-lg font-black text-pink-700 uppercase">This is a triumph of surgery!</span>
+                        </div>
+                        <div class="flex items-center justify-center gap-2">
+                            <!-- Tricki leaping into arms, fully healthy and happy -->
+                            <div class="emoji-char tricki-healthy text-6xl transform -rotate-12">🐕✨</div>
+                            <div class="emoji-char text-8xl">👩🏼‍🦱💖</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
